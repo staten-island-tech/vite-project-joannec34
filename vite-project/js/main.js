@@ -1,18 +1,22 @@
 import "../styles/style.css";
 import { skins } from "./skins";
 
-skins.forEach((skin) =>
-  document.querySelector(".parent").insertAdjacentHTML(
-    "beforeend",
-    `<div class="baby">
+//create boxes
+const createboxes = function () {
+  skins.forEach((skin) =>
+    document.querySelector(".parent").insertAdjacentHTML(
+      "beforeend",
+      `<div class="baby">
   <img class="bundleimage" src="${skin.image}">
   <div class="info">
   <h4>${skin.name}</h4>
   <p class="specific-info">${skin.edition} EDITION // ${skin.price} VP</p>
   </div>
   </div>`
-  )
-);
+    )
+  );
+};
+createboxes();
 
 //theme change
 document.querySelector("#theme-btn").addEventListener("click", function () {
@@ -25,9 +29,20 @@ document.querySelector("#theme-btn").addEventListener("click", function () {
   }
 });
 
+//coding buttons fix this shit
 document.querySelector("#select-btn").addEventListener("click", function () {
-  document.querySelector(".baby").remove(); //fix this so that it removes everything, use nodelist and forEach?
-  skins
-    .filter((skin) => skin.edition.includes("Select"))
-    .forEach((selectSkin) => console.log(selectSkin.name));
+  remove();
 });
+
+const remove = function () {
+  //console.log(document.querySelectorAll(".baby"));
+  document.querySelectorAll(".baby").forEach((babybox) => babybox.remove());
+};
+
+const selectskins = skins.map(selectfilter);
+
+function selectfilter(skins) {
+  skins.filter((skin) => skin.edition.includes("Select"));
+}
+
+console.log(selectskins);
