@@ -1,7 +1,69 @@
-body {
-    background-color: lightblue;
+:root {
+    --off-black: #181414;
+    --gray: #383434;
+    --off-white: #f0ece4;
+    --dark-red: #53212B;
+    --bright-red: #FD4556;
+    --dark-blue: #1c2438;
+    --light-blue: #506484;
+    --wallpaper1: url(https://images.alphacoders.com/123/1239568.jpg);
+    --wallpaper2: url(https://images5.alphacoders.com/128/1282493.jpg);
+
+    /* intentions */
+    --primary: var(--dark-red);
+    --secondary: var(--bright-red);
+
+    /* typography */
+    --h1: 7.594rem;
+    --h2: 5.063rem;
+    --h3: 3.375rem;
+    --h4: 3.375rem;
+    --p: 2.25rem;
+}
+
+h1 {
+    font-size: var(--h1);
+}
+
+h2 {
+    font-size: var(--h2);
+}
+
+h3 {
+    font-size: var(--h3);
+}
+
+h4 {
+    font-size: var(--h4);
 }
 
 p {
-    font-size: 500%;
-  }
+    font-size: var(--p);
+}
+
+.default-theme {
+    --bgwallpaper: var(--wallpaper1);
+    --primary: var(--bright-red);
+    --secondary: var(--dark-red);
+}
+
+.blue-theme {
+    --bgwallpaper: var(--wallpaper2);
+    --primary: var(--light-blue);
+    --secondary: var(--dark-blue);
+}
+
+.header {
+    background-image: var(--bgwallpaper);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.baby {
+    background-color: var(--primary);
+}
+
+.parent {
+    background-color: var(--secondary);
+}
