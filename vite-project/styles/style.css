@@ -18,13 +18,7 @@ body {
 
 h1 {
   font-family: 'VALORANT', sans-serif;
-  margin-bottom: 20px;
-}
-
-.title {
-  text-align: center;
-  color: var(--off-white);
-  transition: 0.4s;                
+  font-weight: 500; 
 }
 
 .stickybar {
@@ -32,7 +26,7 @@ h1 {
   color: var(--off-white);
   position: sticky;
   z-index: 1;
-  top: 0px;
+  top: 0;
   padding: 1rem;
   padding-left: 2rem;
 }
@@ -41,7 +35,7 @@ h1 {
   color: var(--off-white);
   font-size: 100%;
   padding: 1rem;
-  margin: 0rem 0.5rem;
+  margin: 0 0.5rem;
   border-radius: 10px;
   border: none;
   background: none;
@@ -50,16 +44,23 @@ h1 {
 
 .btn:hover {
   background-color: var(--gray);
+  text-decoration: underline;
+  text-decoration-color: var(--bright-red);
+  text-decoration-thickness: 0.4rem;
+  text-underline-offset: 2.1rem;
 }
 
 .header {
+  text-align: center;
+  color: var(--off-white); 
   height: auto;
-  padding: 5rem;
+  padding: 10rem 0 4rem 0;
 }
 
 .val-logo {
   height: 10rem;
   width: auto;
+  margin-top: 2rem;
   transition: 2s;
 }
 
@@ -84,7 +85,7 @@ h1 {
 
 .baby:hover {
   transform: scale(1.05);
-  box-shadow: 10px 10px 0px var(--off-black);
+  box-shadow: 10px 10px 0 var(--off-black);
 }
 
 h4 {
