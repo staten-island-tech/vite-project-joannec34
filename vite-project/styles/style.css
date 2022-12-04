@@ -50,6 +50,12 @@ h1 {
   text-underline-offset: 2.1rem;
 }
 
+.edition-icons {
+  height: 2rem;
+  width: auto;
+  margin-right: 1rem;
+}
+
 .header {
   text-align: center;
   color: var(--off-white); 
