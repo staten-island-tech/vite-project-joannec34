@@ -123,3 +123,16 @@ document.querySelector("#ultra-btn").addEventListener("click", function () {
     )
   );
 });
+
+//fix this xd
+document.querySelector("#money-btn").addEventListener("click", function () {
+  const cashconvert = skins.map((skin) => {
+    const priceusd = {};
+    priceusd.name = skin.name;
+    priceusd.image = skin.image;
+    priceusd.edition = skin.edition;
+    priceusd.price = Math.round(skin.price / 100);
+    return priceusd;
+  });
+  console.log(cashconvert);
+});
