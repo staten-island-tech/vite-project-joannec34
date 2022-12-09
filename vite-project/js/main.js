@@ -1,6 +1,47 @@
 import "../styles/style.css";
 import { skins } from "./skins";
 
+const editions = {
+  getAll: null,
+  getSelect: function () {
+    skins
+      .filter((skin) => skin.edition.includes("Select"))
+      .forEach((skin) => {
+        console.log(skin.name);
+      });
+  },
+  getDeluxe: function () {
+    skins
+      .filter((skin) => skin.edition.includes("Deluxe"))
+      .forEach((skin) => {
+        console.log(skin.name);
+      });
+  },
+  getPremium: function () {
+    skins
+      .filter((skin) => skin.edition.includes("Premium"))
+      .forEach((skin) => {
+        console.log(skin.name);
+      });
+  },
+  getExclusive: function () {
+    skins
+      .filter((skin) => skin.edition.includes("Exclusive"))
+      .forEach((skin) => {
+        console.log(skin.name);
+      });
+  },
+  getUltra: function () {
+    skins
+      .filter((skin) => skin.edition.includes("Ultra"))
+      .forEach((skin) => {
+        console.log(skin.name);
+      });
+  },
+};
+
+editions.getUltra();
+
 //theme change
 document.querySelector("#theme-btn").addEventListener("click", function () {
   if (document.body.classList.contains("blue-theme")) {
@@ -36,7 +77,7 @@ createboxes();
 
 document.querySelector("#all-btn").addEventListener("click", function () {
   remove();
-  createboxes();
+  createboxes(skins);
 });
 
 document.querySelector("#select-btn").addEventListener("click", function () {
@@ -135,4 +176,5 @@ document.querySelector("#money-btn").addEventListener("click", function () {
     return priceusd;
   });
   console.log(cashconvert);
+  createboxes(priceusd);
 });
