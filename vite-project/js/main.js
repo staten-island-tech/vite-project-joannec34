@@ -2,6 +2,7 @@ import "../styles/style.css";
 import { skins } from "./skins";
 
 //theme change
+
 document.querySelector("#theme-btn").addEventListener("click", function () {
   if (document.body.classList.contains("blue-theme")) {
     document.body.classList.add("default-theme");
@@ -12,6 +13,14 @@ document.querySelector("#theme-btn").addEventListener("click", function () {
   }
 });
 
+//dom
+
+const dom = {
+  parent: document.querySelector(".parent"),
+  allbtn: document.querySelector("#all-btn"),
+  selectbtn: document.querySelector("#select-btn"),
+};
+
 //coding buttons
 
 const remove = function () {
@@ -19,7 +28,7 @@ const remove = function () {
 };
 
 const createboxes = function (card) {
-  document.querySelector(".parent").insertAdjacentHTML(
+  dom.parent.insertAdjacentHTML(
     "beforeend",
     `<div class="baby">
   <img class="bundleimage" src="${card.image}">
@@ -32,12 +41,12 @@ const createboxes = function (card) {
 };
 skins.forEach(createboxes);
 
-document.querySelector("#all-btn").addEventListener("click", function () {
+dom.allbtn.addEventListener("click", function () {
   remove();
   skins.forEach(createboxes);
 });
 
-document.querySelector("#select-btn").addEventListener("click", function () {
+dom.selectbtn.addEventListener("click", function () {
   remove();
   const select = skins.filter((skin) => skin.edition.includes("Select"));
   select.forEach(createboxes);
@@ -75,14 +84,14 @@ document.querySelector("#money-btn").addEventListener("click", function () {
     convertedskins.name = skin.name;
     convertedskins.image = skin.image;
     convertedskins.edition = skin.edition;
-    convertedskins.price = Math.round(skin.price / 100);
+    convertedskins.price = Math.round(skin.price * 0.010505);
     return convertedskins;
   });
   remove();
   skinsusd.forEach(createboxes);
 });
 
-//get stuff, still a wip
+//get stuff ?
 
 const editions = {
   getSelect: function () {
@@ -111,5 +120,4 @@ const editions = {
       .forEach((skin) => console.log(skin.name));
   },
 };
-
-editions.getSelect();
+//editions.getSelect();
