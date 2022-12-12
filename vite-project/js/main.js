@@ -1,47 +1,6 @@
 import "../styles/style.css";
 import { skins } from "./skins";
 
-const editions = {
-  getAll: null,
-  getSelect: function () {
-    skins
-      .filter((skin) => skin.edition.includes("Select"))
-      .forEach((skin) => {
-        console.log(skin.name);
-      });
-  },
-  getDeluxe: function () {
-    skins
-      .filter((skin) => skin.edition.includes("Deluxe"))
-      .forEach((skin) => {
-        console.log(skin.name);
-      });
-  },
-  getPremium: function () {
-    skins
-      .filter((skin) => skin.edition.includes("Premium"))
-      .forEach((skin) => {
-        console.log(skin.name);
-      });
-  },
-  getExclusive: function () {
-    skins
-      .filter((skin) => skin.edition.includes("Exclusive"))
-      .forEach((skin) => {
-        console.log(skin.name);
-      });
-  },
-  getUltra: function () {
-    skins
-      .filter((skin) => skin.edition.includes("Ultra"))
-      .forEach((skin) => {
-        console.log(skin.name);
-      });
-  },
-};
-
-editions.getUltra();
-
 //theme change
 document.querySelector("#theme-btn").addEventListener("click", function () {
   if (document.body.classList.contains("blue-theme")) {
@@ -56,125 +15,101 @@ document.querySelector("#theme-btn").addEventListener("click", function () {
 //coding buttons
 
 const remove = function () {
-  document.querySelectorAll(".baby").forEach((babybox) => babybox.remove());
+  document.querySelectorAll(".baby").forEach((baby) => baby.remove());
 };
 
-const createboxes = function () {
-  skins.forEach((skin) =>
-    document.querySelector(".parent").insertAdjacentHTML(
-      "beforeend",
-      `<div class="baby">
-  <img class="bundleimage" src="${skin.image}">
+const createboxes = function (card) {
+  document.querySelector(".parent").insertAdjacentHTML(
+    "beforeend",
+    `<div class="baby">
+  <img class="bundleimage" src="${card.image}">
   <div class="info">
-  <h4>${skin.name}</h4>
-  <p class="specific-info">${skin.edition} EDITION // ${skin.price} VP</p>
+  <h4>${card.name}</h4>
+  <p class="specific-info">${card.edition} EDITION // ${card.price} VP</p>
   </div>
   </div>`
-    )
   );
 };
-createboxes();
+skins.forEach(createboxes);
 
 document.querySelector("#all-btn").addEventListener("click", function () {
   remove();
-  createboxes(skins);
+  skins.forEach(createboxes);
 });
 
 document.querySelector("#select-btn").addEventListener("click", function () {
   remove();
   const select = skins.filter((skin) => skin.edition.includes("Select"));
-  select.forEach((skin) =>
-    document.querySelector(".parent").insertAdjacentHTML(
-      "beforeend",
-      `<div class="baby">
-  <img class="bundleimage" src="${skin.image}">
-  <div class="info">
-  <h4>${skin.name}</h4>
-  <p class="specific-info">${skin.edition} EDITION // ${skin.price} VP</p>
-  </div>
-  </div>`
-    )
-  );
+  select.forEach(createboxes);
 });
 
 document.querySelector("#deluxe-btn").addEventListener("click", function () {
   remove();
   const deluxe = skins.filter((skin) => skin.edition.includes("Deluxe"));
-  deluxe.forEach((skin) =>
-    document.querySelector(".parent").insertAdjacentHTML(
-      "beforeend",
-      `<div class="baby">
-  <img class="bundleimage" src="${skin.image}">
-  <div class="info">
-  <h4>${skin.name}</h4>
-  <p class="specific-info">${skin.edition} EDITION // ${skin.price} VP</p>
-  </div>
-  </div>`
-    )
-  );
+  deluxe.forEach(createboxes);
 });
 
 document.querySelector("#premium-btn").addEventListener("click", function () {
   remove();
   const premium = skins.filter((skin) => skin.edition.includes("Premium"));
-  premium.forEach((skin) =>
-    document.querySelector(".parent").insertAdjacentHTML(
-      "beforeend",
-      `<div class="baby">
-  <img class="bundleimage" src="${skin.image}">
-  <div class="info">
-  <h4>${skin.name}</h4>
-  <p class="specific-info">${skin.edition} EDITION // ${skin.price} VP</p>
-  </div>
-  </div>`
-    )
-  );
+  premium.forEach(createboxes);
 });
 
 document.querySelector("#exclusive-btn").addEventListener("click", function () {
   remove();
   const exclusive = skins.filter((skin) => skin.edition.includes("Exclusive"));
-  exclusive.forEach((skin) =>
-    document.querySelector(".parent").insertAdjacentHTML(
-      "beforeend",
-      `<div class="baby">
-  <img class="bundleimage" src="${skin.image}">
-  <div class="info">
-  <h4>${skin.name}</h4>
-  <p class="specific-info">${skin.edition} EDITION // ${skin.price} VP</p>
-  </div>
-  </div>`
-    )
-  );
+  exclusive.forEach(createboxes);
 });
 
 document.querySelector("#ultra-btn").addEventListener("click", function () {
   remove();
   const ultra = skins.filter((skin) => skin.edition.includes("Ultra"));
-  ultra.forEach((skin) =>
-    document.querySelector(".parent").insertAdjacentHTML(
-      "beforeend",
-      `<div class="baby">
-  <img class="bundleimage" src="${skin.image}">
-  <div class="info">
-  <h4>${skin.name}</h4>
-  <p class="specific-info">${skin.edition} EDITION // ${skin.price} VP</p>
-  </div>
-  </div>`
-    )
-  );
+  ultra.forEach(createboxes);
 });
 
-//fix this xd
+//converter, fix this somehow idk
+
 document.querySelector("#money-btn").addEventListener("click", function () {
-  const cashconvert = skins.map((skin) => {
-    const priceusd = {};
-    priceusd.name = skin.name;
-    priceusd.image = skin.image;
-    priceusd.edition = skin.edition;
-    priceusd.price = Math.round(skin.price / 100);
-    return priceusd;
+  const skinsusd = skins.map((skin) => {
+    const convertedskins = {};
+    convertedskins.name = skin.name;
+    convertedskins.image = skin.image;
+    convertedskins.edition = skin.edition;
+    convertedskins.price = Math.round(skin.price / 100);
+    return convertedskins;
   });
-  console.log(cashconvert);
-  createboxes(priceusd);
+  remove();
+  skinsusd.forEach(createboxes);
 });
+
+//get stuff, still a wip
+
+const editions = {
+  getSelect: function () {
+    skins
+      .filter((skin) => skin.edition.includes("Select"))
+      .forEach((skin) => console.log(skin.name));
+  },
+  getDeluxe: function () {
+    skins
+      .filter((skin) => skin.edition.includes("Deluxe"))
+      .forEach((skin) => console.log(skin.name));
+  },
+  getPremium: function () {
+    skins
+      .filter((skin) => skin.edition.includes("Premium"))
+      .forEach((skin) => console.log(skin.name));
+  },
+  getExclusive: function () {
+    skins
+      .filter((skin) => skin.edition.includes("Exclusive"))
+      .forEach((skin) => console.log(skin.name));
+  },
+  getUltra: function () {
+    skins
+      .filter((skin) => skin.edition.includes("Ultra"))
+      .forEach((skin) => console.log(skin.name));
+  },
+};
+
+editions.getSelect();
