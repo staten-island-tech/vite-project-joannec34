@@ -23,6 +23,7 @@ const dom = {
   premiumbtn: document.querySelector("#premium-btn"),
   exclusivebtn: document.querySelector("#exclusive-btn"),
   ultrabtn: document.querySelector("#ultra-btn"),
+  convertbtn: document.querySelector("#money-btn"),
 };
 
 //coding buttons
@@ -45,84 +46,126 @@ const createboxes = function (card) {
 };
 skins.forEach(createboxes);
 
-const createboxesusd = function (card) {
+const createboxesusd = function (cardusd) {
   dom.parent.insertAdjacentHTML(
     "beforeend",
     `<div class="baby">
-  <img class="bundleimage" src="${card.image}">
+  <img class="bundleimage" src="${cardusd.image}">
   <div class="info">
-  <h4>${card.name}</h4>
-  <p class="specific-info">${card.edition} EDITION // $${card.price}</p>
+  <h4>${cardusd.name}</h4>
+  <p class="specific-info">${cardusd.edition} EDITION // $${cardusd.price}</p>
   </div>
   </div>`
   );
 };
 
-dom.allbtn.addEventListener("click", function () {
+const skinsusd = skins.map((skin) => {
+  const convertedskins = {};
+  convertedskins.name = skin.name;
+  convertedskins.image = skin.image;
+  convertedskins.edition = skin.edition;
+  convertedskins.price = Math.round(skin.price * 0.010505);
+  return convertedskins;
+});
+
+const createall = dom.allbtn.addEventListener("click", function () {
   remove();
-  if (document.body.classList.contains("vp")) {
+  if (document.body.classList.contains("usd")) {
+    skinsusd.forEach(createboxesusd);
+  } else {
     skins.forEach(createboxes);
-  } else {
-    skins.forEach(createboxesusd);
   }
 });
 
-dom.selectbtn.addEventListener("click", function () {
+const createselect = dom.selectbtn.addEventListener("click", function () {
   remove();
-  const select = skins.filter((skin) => skin.edition.includes("Select"));
-  if (document.body.classList.contains("vp")) {
-    select.forEach(createboxes);
-  } else {
+  if (document.body.classList.contains("usd")) {
+    let select = skinsusd.filter((skin) => skin.edition.includes("Select"));
     select.forEach(createboxesusd);
-  }
-});
-
-dom.deluxebtn.addEventListener("click", function () {
-  remove();
-  const deluxe = skins.filter((skin) => skin.edition.includes("Deluxe"));
-  deluxe.forEach(createboxes);
-});
-
-dom.premiumbtn.addEventListener("click", function () {
-  remove();
-  const premium = skins.filter((skin) => skin.edition.includes("Premium"));
-  premium.forEach(createboxes);
-});
-
-dom.exclusivebtn.addEventListener("click", function () {
-  remove();
-  const exclusive = skins.filter((skin) => skin.edition.includes("Exclusive"));
-  exclusive.forEach(createboxes);
-});
-
-dom.ultrabtn.addEventListener("click", function () {
-  remove();
-  const ultra = skins.filter((skin) => skin.edition.includes("Ultra"));
-  ultra.forEach(createboxes);
-});
-
-//converter, fix this somehow idk
-
-document.querySelector("#money-btn").addEventListener("click", function () {
-  const skinsusd = skins.map((skin) => {
-    const convertedskins = {};
-    convertedskins.name = skin.name;
-    convertedskins.image = skin.image;
-    convertedskins.edition = skin.edition;
-    convertedskins.price = Math.round(skin.price * 0.010505);
-    return convertedskins;
-  });
-  remove();
-  skinsusd.forEach(createboxesusd);
-  //make this for vp and usd class thing :D
-  if (document.body.classList.contains("blue-theme")) {
-    document.body.classList.add("default-theme");
-    document.body.classList.remove("blue-theme");
   } else {
-    document.body.classList.add("blue-theme");
-    document.body.classList.remove("default-theme");
+    let select = skins.filter((skin) => skin.edition.includes("Select"));
+    select.forEach(createboxes);
   }
 });
+
+const createdeluxe = dom.deluxebtn.addEventListener("click", function () {
+  remove();
+  if (document.body.classList.contains("usd")) {
+    let deluxe = skinsusd.filter((skin) => skin.edition.includes("Deluxe"));
+    deluxe.forEach(createboxesusd);
+  } else {
+    let deluxe = skins.filter((skin) => skin.edition.includes("Deluxe"));
+    deluxe.forEach(createboxes);
+  }
+});
+
+const createpremium = dom.premiumbtn.addEventListener("click", function () {
+  remove();
+  if (document.body.classList.contains("usd")) {
+    let premium = skinsusd.filter((skin) => skin.edition.includes("Premium"));
+    premium.forEach(createboxesusd);
+  } else {
+    let premium = skins.filter((skin) => skin.edition.includes("Premium"));
+    premium.forEach(createboxes);
+  }
+});
+
+const createexclusive = dom.exclusivebtn.addEventListener("click", function () {
+  remove();
+  if (document.body.classList.contains("usd")) {
+    let exclusive = skinsusd.filter((skin) =>
+      skin.edition.includes("Exclusive")
+    );
+    exclusive.forEach(createboxesusd);
+  } else {
+    let exclusive = skins.filter((skin) => skin.edition.includes("Exclusive"));
+    exclusive.forEach(createboxes);
+  }
+});
+
+const createultra = dom.ultrabtn.addEventListener("click", function () {
+  remove();
+  if (document.body.classList.contains("usd")) {
+    let ultra = skinsusd.filter((skin) => skin.edition.includes("Ultra"));
+    ultra.forEach(createboxesusd);
+  } else {
+    let ultra = skins.filter((skin) => skin.edition.includes("Ultra"));
+    ultra.forEach(createboxes);
+  }
+});
+
+dom.convertbtn.addEventListener("click", function () {
+  if (document.body.classList.contains("usd")) {
+    document.body.classList.add("vp");
+    document.body.classList.remove("usd");
+    this.innerHTML = "price in usd";
+  } else {
+    document.body.classList.add("usd");
+    document.body.classList.remove("vp");
+    this.innerHTML = "price in vp";
+  }
+  refresh();
+});
+
+//why no work
+
+const refresh = function () {
+  let baby = document.querySelectorAll(".baby");
+  console.log(baby);
+  if (baby.includes("Select")) {
+    createselect;
+  } else if (baby.includes("Deluxe")) {
+    createdeluxe;
+  } else if (baby.includes("Premium")) {
+    createpremium;
+  } else if (baby.includes("Exclusive")) {
+    createexclusive;
+  } else if (baby.includes("Ultra")) {
+    createultra;
+  } else {
+    createall;
+  }
+};
 
 //get stuff ?
 
