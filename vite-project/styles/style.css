@@ -120,6 +120,7 @@ span {
 }
 
 img {
-  width: 40rem;
-  height: auto;
+  width: 45rem;
+  height: 25rem;
+  object-fit: cover;
 }
