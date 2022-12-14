@@ -68,70 +68,96 @@ const skinsusd = skins.map((skin) => {
   return convertedskins;
 });
 
-const createall = dom.allbtn.addEventListener("click", function () {
+dom.allbtn.addEventListener("click", function () {
   remove();
-  if (document.body.classList.contains("usd")) {
-    skinsusd.forEach(createboxesusd);
-  } else {
-    skins.forEach(createboxes);
-  }
+  const createall = function () {
+    if (document.body.classList.contains("usd")) {
+      skinsusd.forEach(createboxesusd);
+    } else {
+      skins.forEach(createboxes);
+    }
+  };
+  createall();
+  return createall();
 });
 
 const createselect = dom.selectbtn.addEventListener("click", function () {
   remove();
-  if (document.body.classList.contains("usd")) {
-    let select = skinsusd.filter((skin) => skin.edition.includes("Select"));
-    select.forEach(createboxesusd);
-  } else {
-    let select = skins.filter((skin) => skin.edition.includes("Select"));
-    select.forEach(createboxes);
-  }
+  const createselect = function () {
+    if (document.body.classList.contains("usd")) {
+      let select = skinsusd.filter((skin) => skin.edition.includes("Select"));
+      select.forEach(createboxesusd);
+    } else {
+      let select = skins.filter((skin) => skin.edition.includes("Select"));
+      select.forEach(createboxes);
+    }
+  };
+  createselect();
+  return createselect();
 });
 
 const createdeluxe = dom.deluxebtn.addEventListener("click", function () {
   remove();
-  if (document.body.classList.contains("usd")) {
-    let deluxe = skinsusd.filter((skin) => skin.edition.includes("Deluxe"));
-    deluxe.forEach(createboxesusd);
-  } else {
-    let deluxe = skins.filter((skin) => skin.edition.includes("Deluxe"));
-    deluxe.forEach(createboxes);
-  }
+  const createdeluxe = function () {
+    if (document.body.classList.contains("usd")) {
+      let deluxe = skinsusd.filter((skin) => skin.edition.includes("Deluxe"));
+      deluxe.forEach(createboxesusd);
+    } else {
+      let deluxe = skins.filter((skin) => skin.edition.includes("Deluxe"));
+      deluxe.forEach(createboxes);
+    }
+  };
+  createdeluxe();
+  return createdeluxe();
 });
 
 const createpremium = dom.premiumbtn.addEventListener("click", function () {
   remove();
-  if (document.body.classList.contains("usd")) {
-    let premium = skinsusd.filter((skin) => skin.edition.includes("Premium"));
-    premium.forEach(createboxesusd);
-  } else {
-    let premium = skins.filter((skin) => skin.edition.includes("Premium"));
-    premium.forEach(createboxes);
-  }
+  const createpremium = function () {
+    if (document.body.classList.contains("usd")) {
+      let premium = skinsusd.filter((skin) => skin.edition.includes("Premium"));
+      premium.forEach(createboxesusd);
+    } else {
+      let premium = skins.filter((skin) => skin.edition.includes("Premium"));
+      premium.forEach(createboxes);
+    }
+  };
+  createpremium();
+  return createpremium();
 });
 
 const createexclusive = dom.exclusivebtn.addEventListener("click", function () {
   remove();
-  if (document.body.classList.contains("usd")) {
-    let exclusive = skinsusd.filter((skin) =>
-      skin.edition.includes("Exclusive")
-    );
-    exclusive.forEach(createboxesusd);
-  } else {
-    let exclusive = skins.filter((skin) => skin.edition.includes("Exclusive"));
-    exclusive.forEach(createboxes);
-  }
+  const createexclusive = function () {
+    if (document.body.classList.contains("usd")) {
+      let exclusive = skinsusd.filter((skin) =>
+        skin.edition.includes("Exclusive")
+      );
+      exclusive.forEach(createboxesusd);
+    } else {
+      let exclusive = skins.filter((skin) =>
+        skin.edition.includes("Exclusive")
+      );
+      exclusive.forEach(createboxes);
+    }
+  };
+  createexclusive();
+  return createexclusive();
 });
 
 const createultra = dom.ultrabtn.addEventListener("click", function () {
   remove();
-  if (document.body.classList.contains("usd")) {
-    let ultra = skinsusd.filter((skin) => skin.edition.includes("Ultra"));
-    ultra.forEach(createboxesusd);
-  } else {
-    let ultra = skins.filter((skin) => skin.edition.includes("Ultra"));
-    ultra.forEach(createboxes);
-  }
+  const createultra = function () {
+    if (document.body.classList.contains("usd")) {
+      let ultra = skinsusd.filter((skin) => skin.edition.includes("Ultra"));
+      ultra.forEach(createboxesusd);
+    } else {
+      let ultra = skins.filter((skin) => skin.edition.includes("Ultra"));
+      ultra.forEach(createboxes);
+    }
+  };
+  createultra();
+  return createultra();
 });
 
 dom.convertbtn.addEventListener("click", function () {
@@ -153,17 +179,17 @@ const refresh = function () {
   let baby = document.querySelectorAll(".baby");
   console.log(baby);
   if (baby.includes("Select")) {
-    createselect;
+    createselect();
   } else if (baby.includes("Deluxe")) {
-    createdeluxe;
+    createdeluxe();
   } else if (baby.includes("Premium")) {
-    createpremium;
+    createpremium();
   } else if (baby.includes("Exclusive")) {
-    createexclusive;
+    createexclusive();
   } else if (baby.includes("Ultra")) {
-    createultra;
+    createultra();
   } else {
-    createall;
+    createall();
   }
 };
 
