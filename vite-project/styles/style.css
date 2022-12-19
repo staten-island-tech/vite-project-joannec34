@@ -115,10 +115,6 @@ h4 {
   font-style: italic;
 }
 
-span {
-  font-size: var(--p);
-}
-
 img {
   width: 45rem;
   height: 25rem;
