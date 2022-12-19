@@ -175,7 +175,7 @@ dom.convertbtn.addEventListener("click", function () {
 
 const refresh = function () {
   let baby = document.querySelectorAll(".baby");
-  console.log(baby);
+  //console.log(baby);
   if (baby.includes("Select")) {
     createselect();
   } else if (baby.includes("Deluxe")) {
