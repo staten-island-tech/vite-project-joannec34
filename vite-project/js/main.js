@@ -39,7 +39,7 @@ const createboxes = function (card) {
   <img class="bundleimage" src="${card.image}">
   <div class="info">
   <h4>${card.name}</h4>
-  <p class="specific-info">${card.edition} EDITION // ${card.price} VP</p>
+  <p class="specific-info"><span class="specific-edition">${card.edition}</span> EDITION // ${card.price} VP</p>
   </div>
   </div>`
   );
@@ -53,7 +53,7 @@ const createboxesusd = function (cardusd) {
   <img class="bundleimage" src="${cardusd.image}">
   <div class="info">
   <h4>${cardusd.name}</h4>
-  <p class="specific-info">${cardusd.edition} EDITION // $${cardusd.price}</p>
+  <p class="specific-info"><span class="specific-edition">${cardusd.edition}</span> EDITION // $${cardusd.price}</p>
   </div>
   </div>`
   );
@@ -81,7 +81,7 @@ const createallcards = function () {
   }
 };
 
-const createselect = dom.selectbtn.addEventListener("click", function () {
+dom.selectbtn.addEventListener("click", function () {
   remove();
   createselectcards();
 });
@@ -96,7 +96,7 @@ const createselectcards = function () {
   }
 };
 
-const createdeluxe = dom.deluxebtn.addEventListener("click", function () {
+dom.deluxebtn.addEventListener("click", function () {
   remove();
   createdeluxecards();
 });
@@ -111,7 +111,7 @@ const createdeluxecards = function () {
   }
 };
 
-const createpremium = dom.premiumbtn.addEventListener("click", function () {
+dom.premiumbtn.addEventListener("click", function () {
   remove();
   createpremiumcards();
 });
@@ -126,7 +126,7 @@ const createpremiumcards = function () {
   }
 };
 
-const createexclusive = dom.exclusivebtn.addEventListener("click", function () {
+dom.exclusivebtn.addEventListener("click", function () {
   remove();
   createexclusivecards();
 });
@@ -143,7 +143,7 @@ const createexclusivecards = function () {
   }
 };
 
-const createultra = dom.ultrabtn.addEventListener("click", function () {
+dom.ultrabtn.addEventListener("click", function () {
   remove();
   createultracards();
 });
@@ -174,25 +174,32 @@ dom.convertbtn.addEventListener("click", function () {
 //why no work
 
 const refresh = function () {
+  let edition = document.querySelector(".specific-edition").innerHTML;
   console.log(edition);
   if (edition.includes("Select")) {
-    createselect();
+    remove();
+    createselectcards();
   } else if (edition.includes("Deluxe")) {
-    createdeluxe();
+    remove();
+    createdeluxecards();
   } else if (edition.includes("Premium")) {
-    createpremium();
+    remove();
+    createpremiumcards();
   } else if (edition.includes("Exclusive")) {
-    createexclusive();
+    remove();
+    createexclusivecards();
   } else if (edition.includes("Ultra")) {
-    createultra();
+    remove();
+    createultracards();
   } else {
-    createall();
+    remove();
+    createallcards();
   }
 };
 
 //get stuff ?
 
-const editions = {
+/* const editions = {
   getSelect: function () {
     skins
       .filter((skin) => skin.edition.includes("Select"))
@@ -220,3 +227,4 @@ const editions = {
   },
 };
 editions.getSelect();
+ */
