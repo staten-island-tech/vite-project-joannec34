@@ -174,17 +174,16 @@ dom.convertbtn.addEventListener("click", function () {
 //why no work
 
 const refresh = function () {
-  let baby = document.querySelectorAll(".baby");
-  //console.log(baby);
-  if (baby.includes("Select")) {
+  console.log(edition);
+  if (edition.includes("Select")) {
     createselect();
-  } else if (baby.includes("Deluxe")) {
+  } else if (edition.includes("Deluxe")) {
     createdeluxe();
-  } else if (baby.includes("Premium")) {
+  } else if (edition.includes("Premium")) {
     createpremium();
-  } else if (baby.includes("Exclusive")) {
+  } else if (edition.includes("Exclusive")) {
     createexclusive();
-  } else if (baby.includes("Ultra")) {
+  } else if (edition.includes("Ultra")) {
     createultra();
   } else {
     createall();
