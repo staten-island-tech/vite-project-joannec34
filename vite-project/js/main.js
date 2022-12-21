@@ -175,24 +175,19 @@ dom.convertbtn.addEventListener("click", function () {
 
 const refresh = function () {
   let edition = document.querySelector(".specific-edition").innerHTML;
-  console.log(edition);
+  //console.log(edition);
+  remove();
   if (edition.includes("Select")) {
-    remove();
     createselectcards();
   } else if (edition.includes("Deluxe")) {
-    remove();
     createdeluxecards();
   } else if (edition.includes("Premium")) {
-    remove();
     createpremiumcards();
   } else if (edition.includes("Exclusive")) {
-    remove();
     createexclusivecards();
   } else if (edition.includes("Ultra")) {
-    remove();
     createultracards();
   } else {
-    remove();
     createallcards();
   }
 };
