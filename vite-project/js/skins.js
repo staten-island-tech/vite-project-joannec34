@@ -146,6 +146,13 @@ const skins = [
     edition: "Deluxe",
     price: 5100,
   },
+  {
+    name: "Cryostasis",
+    image:
+      "https://cdn.oneesports.gg/cdn-data/2022/12/Valorant_Cryostasis_Skin_Bundle.webp",
+    edition: "Premium",
+    price: 7100,
+  },
 ];
 
 export { skins };

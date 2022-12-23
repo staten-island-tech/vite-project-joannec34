@@ -196,19 +196,20 @@ dom.convertbtn.addEventListener("click", function () {
 
 const refresh = function () {
   let edition = document.querySelector(".specific-edition").innerHTML;
-  //console.log(edition);
   remove();
-  if (edition.includes("Select")) {
+  if (edition.includes("hello")) {
+    createcards.all();
+  } else if (edition.includes("Select")) {
     createcards.select();
   } else if (edition.includes("Deluxe")) {
-    createcards.select();
+    createcards.deluxe();
   } else if (edition.includes("Premium")) {
-    createcards.select();
+    createcards.premium();
   } else if (edition.includes("Exclusive")) {
-    createcards.select();
+    createcards.exclusive();
   } else if (edition.includes("Ultra")) {
-    createcards.select();
+    createcards.ultra();
   } else {
-    createcards.select();
+    console.log("hello");
   }
 };
